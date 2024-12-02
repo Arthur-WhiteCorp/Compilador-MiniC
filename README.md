@@ -1,4 +1,4 @@
-# Compilador-MiniC-8-Bits
+# Compilador-MiniC
 
 ## Projeto: Compilador MiniC para Arquitetura RISC de 8 bits
 
