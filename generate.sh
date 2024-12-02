@@ -9,8 +9,8 @@ set -o errexit
 # There are 2 ways of running the ANTLR generator here.
 
 # 1) Running from jar. Use the given jar (or replace it by another one you built or downloaded) for generation.
-LOCATION=/usr/local/lib/java-23.0.1/antlr-4.13.2-complete.jar
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+LOCATION="$SCRIPT_DIR/antlr4_tool/antlr-4.13.2-complete.jar"
 echo "Script directory: $SCRIPT_DIR"
 # Generate TLexer and its tokens
 
@@ -18,9 +18,18 @@ echo "Script directory: $SCRIPT_DIR"
 java -jar $LOCATION -Dlanguage=Cpp -listener -visitor \
     "$SCRIPT_DIR"/grammar/TLexer.g4
 
+if [ $? -ne 0 ]; then
+    echo "Error: ANTLR command to generate lexer failed!"
+    exit 1
+fi
+
 java -jar $LOCATION -Dlanguage=Cpp -listener -visitor \
     "$SCRIPT_DIR"/grammar/TParser.g4
 
+if [ $? -ne 0 ]; then
+    echo "Error: ANTLR command to generate parser failed!"
+    exit 1
+fi
 
 find "$SCRIPT_DIR/grammar" -type f ! -name "*.g4" ! -name "*.md" -exec mv {} "$SCRIPT_DIR/src/parser_lexer/" \;
 find "$SCRIPT_DIR/src/parser_lexer" -type f -name "*.h" -exec mv {} "$SCRIPT_DIR/headers/" \;

@@ -10,6 +10,33 @@ endif()
 
 set(ANTLR_BUILD_STATIC TRUE)  
 
+
+# Check for Java
+find_package(Java REQUIRED)
+
+# Display the Java version found
+execute_process(
+    COMMAND java -version
+   
+)
+
+
+# Define the destination directory within your project
+set(ANTLR_JAR_PATH "${CMAKE_SOURCE_DIR}/antlr4_tool/antlr-4.13.2-complete.jar")
+set(ANTLR_URL "https://www.antlr.org/download/antlr-4.13.2-complete.jar")
+
+# Ensure the destination directory exists within your project
+file(MAKE_DIRECTORY "${CMAKE_SOURCE_DIR}/libs")
+
+# Download the ANTLR jar if it doesn't already exist
+if(NOT EXISTS "${ANTLR_JAR_PATH}")
+    message(STATUS "Downloading ANTLR 4.13.2 jar...")
+    file(DOWNLOAD ${ANTLR_URL} "${ANTLR_JAR_PATH}")
+else()
+    message(STATUS "ANTLR jar already exists at ${ANTLR_JAR_PATH}")
+endif()
+
+
 set(antlr4-GENERATED_SRC
    ${PROJECT_SOURCE_DIR}/src/parser_lexer/TLexer.cpp 
    ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParser.cpp
@@ -28,14 +55,6 @@ foreach(src_file ${antlr4-GENERATED_SRC})
 endforeach(src_file ${antlr4-GENERATED_SRC})
 
 
-execute_process(
-  COMMAND /bin/bash "${CMAKE_SOURCE_DIR}/generate.sh"
-  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-  RESULT_VARIABLE result
-  OUTPUT_VARIABLE output
-  ERROR_VARIABLE error_output
-)
-
 add_custom_command(
   OUTPUT ${PROJECT_SOURCE_DIR}/src/parser_lexer/TLexer.cpp
   ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParser.cpp
@@ -47,15 +66,8 @@ add_custom_command(
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/generate.sh
 )
 
-add_custom_command(
-  OUTPUT ${PROJECT_SOURCE_DIR}/demo/generated/TLexer.cpp
-  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/your_script.sh
-  DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/your_script.sh
-)
 
-message(STATUS "Result: ${result}")
-message(STATUS "Output: ${output}")
-message(STATUS "Error Output: ${error_output}")
+
 
 include_directories(
   ${PROJECT_SOURCE_DIR}/headers

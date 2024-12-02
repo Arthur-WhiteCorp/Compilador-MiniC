@@ -44,3 +44,6 @@ CMakeScripts/
 Makefile
 cmake_install.cmake
 CTestTestfile.cmake
+
+# Antlr4 Tool
+antlr4_tool
