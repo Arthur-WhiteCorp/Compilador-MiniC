@@ -21,6 +21,17 @@ execute_process(
 )
 
 
+# Mostrar o valor inserido
+execute_process(
+  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/permission.sh
+  RESULT_VARIABLE result
+  ERROR_VARIABLE error
+)
+
+if (result EQUAL 1)
+  message(FATAL_ERROR "Download cancelado pelo usuário. O projeto não pode continuar sem o arquivo ANTLR.")
+endif()
+
 # Define the destination directory within your project
 set(ANTLR_JAR_PATH "${CMAKE_SOURCE_DIR}/antlr4_tool/antlr-4.13.2-complete.jar")
 set(ANTLR_URL "https://www.antlr.org/download/antlr-4.13.2-complete.jar")
@@ -30,10 +41,10 @@ file(MAKE_DIRECTORY "${CMAKE_SOURCE_DIR}/libs")
 
 # Download the ANTLR jar if it doesn't already exist
 if(NOT EXISTS "${ANTLR_JAR_PATH}")
-    message(STATUS "Downloading ANTLR 4.13.2 jar...")
+    message(STATUS "Baixando ANTLR 4.13.2 jar...")
     file(DOWNLOAD ${ANTLR_URL} "${ANTLR_JAR_PATH}")
 else()
-    message(STATUS "ANTLR jar already exists at ${ANTLR_JAR_PATH}")
+    message(STATUS "ANTLR ja existe em ${ANTLR_JAR_PATH}")
 endif()
 
 
