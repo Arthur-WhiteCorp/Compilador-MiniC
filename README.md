@@ -49,16 +49,18 @@ Para instruções detalhadas sobre como utilizar o Assembler, consulte o reposit
 
 1. **Clone este repositório:**
    ```bash
- 	PLACE HOLDER  
+   PLACE HOLDER  
    ```
+
 2. **Compile o programa:**
    ```bash
-      PLAEC HOLDER
-  ```
-3. **Execute**
-    ```bash
    PLACE HOLDER
-    ```
+   ```
+
+3. **Execute:**
+   ```bash
+   PLACE HOLDER
+   ```
 
 
 ---
