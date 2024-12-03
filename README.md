@@ -12,8 +12,7 @@ Arthur Silva Matias
 - **Linguagem de Programação**: C++
 - **Parser/Lexer**: ANTLR4
 - **Sistema de Build**: CMake
-- **Arquitetura**: RISC de 8 bits
-- **Objetivo Educacional**: Ensino de compiladores e arquitetura de sistemas
+
 
 ## Descrição
 
