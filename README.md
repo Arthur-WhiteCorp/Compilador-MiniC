@@ -1,10 +1,21 @@
 # Compilador-MiniC
 
-## Projeto: Compilador MiniC para Arquitetura RISC de 8 bits
+## Visão Geral
 
-### Autor: Arthur Silva Matias
+Compilador MiniC para Arquitetura RISC de 8 bits
 
-#### Descrição
+## Autor
+
+Arthur Silva Matias
+
+## Linguagens e Ferramentas Utilizadas:
+- **Linguagem de Programação**: C++
+- **Parser/Lexer**: ANTLR4
+- **Sistema de Build**: CMake
+- **Arquitetura**: RISC de 8 bits
+- **Objetivo Educacional**: Ensino de compiladores e arquitetura de sistemas
+
+## Descrição
 
 Este projeto consiste no código fonte de um **compilador** para a linguagem **MiniC**, uma linguagem de programação baseada em **C** desenvolvida por mim, projetada especificamente para ser executada em uma **arquitetura RISC de 8 bits**. O compilador foi criado com o objetivo de ser utilizado como ferramenta educacional pelo professor **Juan Colonna**, da **Universidade Federal do Amazonas (UFAM)**, para fins de ensino de conceitos fundamentais de compiladores e arquitetura de sistemas.
 
@@ -15,14 +26,41 @@ O processo de construção do projeto é gerido pelo sistema de **build CMake**,
 - **`grammar/`**: para os arquivos de definição da gramática ANTLR.
 - **`headers/`**: para os arquivos de cabeçalho do C++.
 
-A **arquitetura RISC de 8 bits** foi escolhida devido à sua simplicidade e eficiência, permitindo aos alunos compreenderem melhor os fundamentos da execução de programas em sistemas de baixo nível. O objetivo do compilador **MiniC** é compilar programas escritos em **MiniC** para **código de máquina** executável diretamente na arquitetura alvo de 8 bits.
+A **arquitetura RISC** foi escolhida devido à sua simplicidade e eficiência, permitindo aos alunos compreenderem melhor os fundamentos da execução de programas em sistemas de baixo nível. O objetivo do compilador **MiniC** é compilar programas escritos em **MiniC** para **código de máquina** executável diretamente na arquitetura alvo de 8 bits.
 
-### Linguagens e Ferramentas Utilizadas:
-- **Linguagem de Programação**: C++
-- **Parser/Lexer**: ANTLR4
-- **Sistema de Build**: CMake
-- **Arquitetura**: RISC de 8 bits
-- **Objetivo Educacional**: Ensino de compiladores e arquitetura de sistemas
+Para validação e teste do compilador foram utilizados um assembler para a arquitetura RISC e um emulador de arquitetura RISC ambos de autoria própria.
+
+## Repositório do Assembler
+
+O Compilador funciona em conjunto com o **Assembler**, cujo repositório pode ser acessado no link abaixo:
+
+[Repositório do Assembler](https://github.com/Arthur-WhiteCorp/Assembler)
+
+Para instruções detalhadas sobre como utilizar o Assembler, consulte o repositório correspondente.
+
+## Repositório do Emulador de Arquitetura RISC
+
+O Compilador é validado com o **Emulador**, cujo repositório pode ser acessado no link abaixo:
+
+[Repositório do Emulador](https://github.com/Arthur-WhiteCorp/Emulador-De-Arquitetura-De-Computador)
+
+Para instruções detalhadas sobre como utilizar o Assembler, consulte o repositório correspondente.
+
+## Execução
+
+1. **Clone este repositório:**
+   ```bash
+   
+   ```
+2. **Compile o programa:**
+   ```bash
+   
+  ```
+3. **Execute**
+    ```bash
+   
+    ```
+
 
 ---
 
