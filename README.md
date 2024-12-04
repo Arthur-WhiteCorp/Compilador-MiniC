@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Compilador MiniC para Arquitetura RISC de 8 bits
+Compilador MiniC para Arquitetura RISC.
 
 ## Autor
 
@@ -16,7 +16,7 @@ Arthur Silva Matias
 
 ## Descrição
 
-Este projeto consiste no código fonte de um **compilador** para a linguagem **MiniC**, uma linguagem de programação baseada em **C** desenvolvida por mim, projetada especificamente para ser executada em uma **arquitetura RISC de 8 bits**. O compilador foi criado com o objetivo de ser utilizado como ferramenta educacional pelo professor **Juan Colonna**, da **Universidade Federal do Amazonas (UFAM)**, para fins de ensino de conceitos fundamentais de compiladores e arquitetura de sistemas.
+Este projeto consiste no código fonte de um **compilador** para a linguagem **MiniC**, uma linguagem de programação baseada em **C** desenvolvida por mim, projetada especificamente para ser executada em uma **arquitetura RISC**. O compilador foi criado com o objetivo de ser utilizado como ferramenta educacional pelo professor **Juan Colonna**, da **Universidade Federal do Amazonas (UFAM)**, para fins de ensino de conceitos fundamentais de compiladores e arquitetura de sistemas.
 
 A linguagem **MiniC** possui sintaxe inspirada em C, mas simplificada para facilitar o aprendizado. O compilador foi implementado utilizando a linguagem **C++** e faz uso do **ANTLR4** para gerar o **lexer** e o **parser**. ANTLR4 é uma poderosa ferramenta para a construção de compiladores e intérpretes, permitindo a definição de gramáticas complexas de maneira simples e eficiente.
 
@@ -25,7 +25,7 @@ O processo de construção do projeto é gerido pelo sistema de **build CMake**,
 - **`grammar/`**: para os arquivos de definição da gramática ANTLR.
 - **`headers/`**: para os arquivos de cabeçalho do C++.
 
-A **arquitetura RISC** foi escolhida devido à sua simplicidade e eficiência, permitindo aos alunos compreenderem melhor os fundamentos da execução de programas em sistemas de baixo nível. O objetivo do compilador **MiniC** é compilar programas escritos em **MiniC** para **código de máquina** executável diretamente na arquitetura alvo de 8 bits.
+A **arquitetura RISC** foi escolhida devido à sua simplicidade e eficiência, permitindo aos alunos compreenderem melhor os fundamentos da execução de programas em sistemas de baixo nível. O objetivo do compilador **MiniC** é compilar programas escritos em **MiniC** para **código de máquina** executável diretamente na arquitetura alvo.
 
 Para validação e teste do compilador foram utilizados um assembler para a arquitetura RISC e um emulador de arquitetura RISC ambos de autoria própria.
 
