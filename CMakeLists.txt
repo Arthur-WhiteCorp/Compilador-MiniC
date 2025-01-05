@@ -36,8 +36,6 @@ endif()
 set(ANTLR_JAR_PATH "${CMAKE_SOURCE_DIR}/antlr4_tool/antlr-4.13.2-complete.jar")
 set(ANTLR_URL "https://www.antlr.org/download/antlr-4.13.2-complete.jar")
 
-# Ensure the destination directory exists within your project
-file(MAKE_DIRECTORY "${CMAKE_SOURCE_DIR}/libs")
 
 # Download the ANTLR jar if it doesn't already exist
 if(NOT EXISTS "${ANTLR_JAR_PATH}")
@@ -56,28 +54,19 @@ set(antlr4-GENERATED_SRC
    ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParserListener.cpp
    ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParserVisitor.cpp
 )
-
-foreach(src_file ${antlr4-GENERATED_SRC})
-      set_source_files_properties(
-          ${src_file}
-          PROPERTIES
-          GENERATED TRUE
-          )
-endforeach(src_file ${antlr4-GENERATED_SRC})
-
+message(STATUS "ANTLR4 GENERATED SRC: ${antlr4-GENERATED_SRC}")
 
 add_custom_command(
-  OUTPUT ${PROJECT_SOURCE_DIR}/src/parser_lexer/TLexer.cpp
-  ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParser.cpp
-  ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParserBaseListener.cpp
-  ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParserBaseVisitor.cpp
-  ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParserListener.cpp
-  ${PROJECT_SOURCE_DIR}/src/parser_lexer/TParserVisitor.cpp
-  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/generate.sh
-  DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/generate.sh
+  OUTPUT ${antlr4-GENERATED_SRC}
+  COMMAND ${CMAKE_COMMAND} -E echo "Running generate.sh script"
+  COMMAND "${PROJECT_SOURCE_DIR}/generate.sh"
+  DEPENDS 
+    ${CMAKE_CURRENT_SOURCE_DIR}/generate.sh
+    ${PROJECT_SOURCE_DIR}/grammar/TLexer.g4
+    ${PROJECT_SOURCE_DIR}/grammar/TParser.g4
+  COMMENT "Running ANTLR to generate lexer and parser files"
 )
-
-
+add_custom_target(generate_parser_files ALL DEPENDS ${antlr4-GENERATED_SRC})
 
 
 include_directories(
@@ -119,6 +108,8 @@ endforeach(src_file ${project_SRC})
 add_executable(project
   ${project_SRC}
 )
+
+add_dependencies(project generate_parser_files)
 
 
 target_link_libraries(project PRIVATE antlr4_static)
